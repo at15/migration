@@ -1,0 +1,10 @@
+# Created by .gitignore support plugin (hsz.mobi)
+
+# Ignore idea stuff
+.idea/*
+
+# Ignore vendor
+vendor/*
+
+# Ignore lock file for lib
+composer.lock
