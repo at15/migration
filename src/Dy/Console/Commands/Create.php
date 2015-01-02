@@ -19,7 +19,7 @@ class Create extends Command
     protected function configure()
     {
         $this->setName('db:create')
-            ->setDescription('create a database');
+            ->setDescription('create the database');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

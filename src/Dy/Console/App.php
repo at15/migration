@@ -20,6 +20,7 @@ class App extends Application
         parent::__construct();
         $this->add(new Commands\Create());
         $this->add(new Commands\Drop());
+        $this->add(new Commands\Migrate());
     }
 
     public function setConfigDir($dir)
