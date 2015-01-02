@@ -11,9 +11,25 @@ use Symfony\Component\Console\Application;
 
 class App extends Application
 {
+    protected $_configDirPath = '';
+    protected $_cachedConfig = array();
+
     public function __construct()
     {
         parent::__construct();
         $this->add(new Commands\Create());
+    }
+
+    public function setConfigDir($dir)
+    {
+        $this->_configDirPath = rtrim($dir, '/');
+    }
+
+    public function readConfig($name)
+    {
+        if (!isset($this->_cachedConfig[$name])) {
+            $this->_cachedConfig[$name] = require_once($this->_configDirPath . '/' . $name . '.php');
+        }
+        return $this->_cachedConfig[$name];
     }
 }

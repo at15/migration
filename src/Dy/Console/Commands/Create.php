@@ -7,9 +7,12 @@
  */
 namespace Dy\Console\Commands;
 
+use Dy\Database\DB;
+use Dy\Migration\Database as MigrateDB;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 
 class Create extends Command
 {
@@ -21,6 +24,17 @@ class Create extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('la la i want to create the database lalalala');
+        // create the database
+        $app = $this->getApplication();
+        $config = $app->readConfig('database');
+        $dbName = $config['database'];
+        DB::enableCreateMode();
+        DB::reconnect($config);
+        $database = new MigrateDB();
+        if ($database->create($dbName)) {
+            $output->writeln('db created!');
+        } else {
+            $output->writeln('fail to create db');
+        }
     }
 }

@@ -25,7 +25,7 @@ class DB
      * @var array
      */
     private static $config = array();
-    private static $db_name = '';
+    private static $createMode = false;
 
     protected function __construct()
     {
@@ -52,6 +52,16 @@ class DB
         } else {
             static::$config = $config;
         }
+    }
+
+    public static function enableCreateMode()
+    {
+        static::$createMode = true;
+    }
+
+    public static function disableCreateMode()
+    {
+        static::$createMode = false;
     }
 
     /**
@@ -82,7 +92,7 @@ class DB
             // generate dsn.
             // only support mysql currently
             $dsn = 'mysql:host=' . static::$config['host'];
-            if (!empty(static::$config['database'])) {
+            if (!empty(static::$config['database']) and !static::$createMode) {
                 $dsn .= ';dbname=' . static::$config['database'];
             }
             // set the options when first connect. reduce query for set attributes? (set attributes doesn't query mysql?)

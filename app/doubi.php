@@ -10,4 +10,5 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 use Dy\Console\App;
 
 $console = new App();
+$console->setConfigDir(__DIR__ . '/../tests/config');
 $console->run();
