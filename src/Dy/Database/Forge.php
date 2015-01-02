@@ -17,11 +17,6 @@ namespace Dy\Database;
  */
 final class Forge
 {
-    public function __construct()
-    {
-        //do nothing
-    }
-
     public function tableExists($tableName)
     {
         $sql = 'select COUNT(*) AS num from information_schema.tables where table_schema = DATABASE() and table_name = :tbl_name';

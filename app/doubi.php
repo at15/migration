@@ -7,7 +7,7 @@
  */
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-use Symfony\Component\Console\Application;
+use Dy\Console\App;
 
-$console = new Application();
+$console = new App();
 $console->run();
