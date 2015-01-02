@@ -8,6 +8,7 @@
 namespace Dy\Console;
 
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
 
 class App extends Application
 {
@@ -18,6 +19,7 @@ class App extends Application
     {
         parent::__construct();
         $this->add(new Commands\Create());
+        $this->add(new Commands\Drop());
     }
 
     public function setConfigDir($dir)
