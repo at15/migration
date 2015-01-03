@@ -29,6 +29,6 @@ class Migrate extends Command
         $migrationFolder = rtrim($config['folder'], '/');
         $files = glob($migrationFolder . '/*.php');
         var_dump($files);
-        $output->writeln('i want to migrate!');
+        $output->writeln('<info>i want to migrate!</info>');
     }
 }

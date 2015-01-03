@@ -30,10 +30,10 @@ class Drop extends Command
         $dbName = $config['database'];
         DB::setConfig($config);
         $database = new MigrateDB();
-        if ($database->drop($dbName)) {
-            $output->writeln('db dropped!');
+        if (!$database->drop($dbName)) {
+            $output->writeln('<error>fail to drop db</error>');
         } else {
-            $output->writeln('fail to drop db');
+            $output->writeln('<info>db dropped!</info>');
         }
     }
 }

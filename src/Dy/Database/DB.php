@@ -102,6 +102,7 @@ class DB
                 static::$_conn = new \PDO($dsn,
                     static::$config['username'], static::$config['password'], $driver_options);
             } catch (\PDOException $exception) {
+                // TODO:change the exception type. this exception is only available
                 throw new \InvalidArgumentException(sprintf(
                     'There was a problem connecting to the database: %s',
                     $exception->getMessage()

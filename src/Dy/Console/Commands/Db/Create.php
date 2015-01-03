@@ -31,10 +31,10 @@ class Create extends Command
         DB::enableCreateMode();
         DB::reconnect($config);
         $database = new MigrateDB();
-        if ($database->create($dbName)) {
-            $output->writeln('db created!');
+        if (!$database->create($dbName)) {
+            $output->writeln('<error>fail to create db!</error>');
         } else {
-            $output->writeln('fail to create db');
+            $output->writeln('<info>db created~</info>');
         }
     }
 }

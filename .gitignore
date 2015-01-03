@@ -8,3 +8,6 @@ vendor/*
 
 # Ignore lock file for lib
 composer.lock
+
+# Ingore the migrations file
+tests/migrations/*
