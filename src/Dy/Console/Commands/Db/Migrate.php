@@ -6,7 +6,7 @@
  * Time: 下午10:24
  */
 
-namespace Dy\Console\Commands;
+namespace Dy\Console\Commands\Db;
 
 
 use Symfony\Component\Console\Command\Command;
@@ -23,6 +23,12 @@ class Migrate extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // loop the folder and fond migration file
+        $app = $this->getApplication();
+        $config = $app->readConfig('migration');
+        $migrationFolder = rtrim($config['folder'], '/');
+        $files = glob($migrationFolder . '/*.php');
+        var_dump($files);
         $output->writeln('i want to migrate!');
     }
 }

@@ -3,10 +3,9 @@
  * Created by PhpStorm.
  * User: at15
  * Date: 15-1-2
- * Time: 下午10:00
+ * Time: 下午12:14
  */
-
-namespace Dy\Console\Commands;
+namespace Dy\Console\Commands\Db;
 
 use Dy\Database\DB;
 use Dy\Migration\Database as MigrateDB;
@@ -14,26 +13,28 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Drop extends Command
+
+class Create extends Command
 {
     protected function configure()
     {
-        $this->setName('db:drop')
-            ->setDescription('drop the database');
+        $this->setName('db:create')
+            ->setDescription('create the database');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // drop the database
+        // create the database
         $app = $this->getApplication();
         $config = $app->readConfig('database');
         $dbName = $config['database'];
-        DB::setConfig($config);
+        DB::enableCreateMode();
+        DB::reconnect($config);
         $database = new MigrateDB();
-        if ($database->drop($dbName)) {
-            $output->writeln('db dropped!');
+        if ($database->create($dbName)) {
+            $output->writeln('db created!');
         } else {
-            $output->writeln('fail to drop db');
+            $output->writeln('fail to create db');
         }
     }
 }

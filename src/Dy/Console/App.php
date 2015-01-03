@@ -18,9 +18,9 @@ class App extends Application
     public function __construct()
     {
         parent::__construct();
-        $this->add(new Commands\Create());
-        $this->add(new Commands\Drop());
-        $this->add(new Commands\Migrate());
+        $this->add(new Commands\Db\Create());
+        $this->add(new Commands\Db\Drop());
+        $this->add(new Commands\Db\Migrate());
     }
 
     public function setConfigDir($dir)
