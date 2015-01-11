@@ -8,7 +8,8 @@
 
 namespace Dy\Console\Commands\Db;
 
-
+use Dy\Database\DB;
+use Dy\Migration\Database as MigrateDB;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -27,8 +28,14 @@ class Migrate extends Command
         $app = $this->getApplication();
         $config = $app->readConfig('migration');
         $migrationFolder = rtrim($config['folder'], '/');
-        $files = glob($migrationFolder . '/*.php');
+        $config = $app->readConfig('database');
+
+        DB::setConfig($config);
+        $database = new MigrateDB();
+        $files = $database->getMigrationFiles($migrationFolder);
         var_dump($files);
+
+        $database->getMigrated();
         $output->writeln('<info>i want to migrate!</info>');
     }
 }

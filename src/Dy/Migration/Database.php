@@ -57,4 +57,30 @@ class Database
         }
         return true;
     }
+
+    public function getMigrated()
+    {
+        $migrationTableName = 'migration_log';
+
+        $forge = new Forge();
+        if (!$forge->tableExists($migrationTableName)) {
+            $forge->createTable($migrationTableName, '( version VARCHAR(255) )');
+        }
+
+        $stmt = DB::getConnection()->query('SELECT * FROM migration_log');
+        $all = $stmt->fetchAll();
+        var_dump($all);
+
+    }
+
+    public function getMigrationFiles($migrationFolder)
+    {
+        return glob($migrationFolder . '/*.php');
+    }
+
+    public function getToMigrate()
+    {
+        // get all migration
+    }
+
 }
