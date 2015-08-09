@@ -1,9 +1,9 @@
-migration
+Migration
 =========
 
-migration for codeignitor 
+Migration commandline for phalcon
 
+## Road map
 
-style guide
-1. use camelCase instead of codeingitor's snake_case for both function name and variable names
-2. use true,false, and, or instead of TRUE, FALSE, && , || 
+- [x] use docker to run mysql
+- [ ] 
