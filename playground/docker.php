@@ -14,3 +14,5 @@
 print_r(exec('docker rm -f migration-mysql',$output,$returnVar));
 print_r($output);
 print_r($returnVar);
+
+// now in script start.php
